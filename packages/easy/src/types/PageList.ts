@@ -1,4 +1,4 @@
-import { isList, List, toList } from './List';
+import { isList, List } from './List';
 import { Construct, ofConstruct } from './Constructor';
 import { isA } from './IsA';
 import { PlainSort, Sort } from './Sort';
@@ -86,7 +86,7 @@ export class PageList<T> extends List<T> {
     return toPageList(super.intersect(others), this);
   }
 
-  intersectByKey(others: ArrayLike<T>, key: keyof T): PageList<T> {
+  intersectByKey<U>(others: ArrayLike<U>, key: keyof T & keyof U): PageList<T> {
     return toPageList(super.intersectByKey(others, key), this);
   }
 
@@ -114,6 +114,7 @@ export class PageList<T> extends List<T> {
   distinctByKey(key: keyof T): PageList<T> {
     return toPageList(super.distinctByKey(key), this);
   }
+
   distinctByValue(): PageList<T> {
     return toPageList(super.distinctByValue(), this);
   }
